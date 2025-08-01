@@ -1,10 +1,14 @@
 #!/usr/bin/env node
 
 import { FastMCP } from "fastmcp";
-import { listDeployments } from "./tools/get-deployments";
+import {
+	// listDeployments,
+	listDeploymentsByWorkflow,
+} from "./tools/get-deployments";
 import { listSharedWorkflows } from "./tools/get-workflows";
 import { runDeployment } from "./tools/run-deployment";
-import { runWorkflow } from "./tools/run-workflow";
+
+// import { uploadFile } from "./tools/upload-file";
 
 // Parse command line arguments
 function parseArgs(): {
@@ -47,13 +51,49 @@ function parseArgs(): {
 export const server = new FastMCP({
 	name: "comfydeploy-mcp",
 	version: "1.0.0",
-	instructions: "ComfyDeploy MCP Server",
+	instructions: `ComfyDeploy MCP Server - AI Generation Platform Integration
+
+INTENDED WORKFLOW:
+1. DISCOVER: Use 'list-shared-workflows' with MULTIPLE search strategies:
+   - Try different keywords (e.g., for thumbnails: "thumbnail", "image generation", "text to image")
+   - Search with broader terms first, then specific ones
+   - Compare results to find the best-matching workflow for user requirements
+2. FIND DEPLOYMENTS: Use 'list-deployments-by-workflow' with the selected workflow_id
+3. UPLOAD FILES (Not available yet, will be implemented in the future):
+   - PREFERRED: Use 'upload-file-from-resource' with Resource URIs (e.g., 'file:///path/to/image.png')
+   - ALTERNATIVE: Use 'upload-file' with direct file paths
+4. EXECUTE: Use 'run-deployment' with correct input format, including uploaded file URLs
+
+SEARCH STRATEGY:
+- Always try multiple search terms to find the best workflows
+- For image generation: try "thumbnail", "image generation", "text to image", "art", "photo"
+- For video: try "video", "animation", "motion", "clip"
+- For editing: try "edit", "transform", "modify", "enhance"
+- Compare results and select the most relevant workflow
+
+INPUT FORMAT FOR RUN-DEPLOYMENT:
+- Inputs must be a flat key-value object: {"node_id": "value", "another_node": "value"}
+- NOT nested objects like {"node_id": {"inputs": {"text": "value"}}}
+- Common node IDs for text prompts: "6" (positive), "7" (negative)
+- Check workflow structure to understand required node IDs
+
+WORKFLOW OVERVIEW:
+- Workflows are base ComfyUI templates/configurations
+- Deployments are production-ready, executable versions of workflows
+- Users provide natural language requests → Agent searches workflows → Agent finds deployment → Agent runs deployment with inputs
+
+TOOLS PRIORITY:
+- list-shared-workflows (multiple searches) → list-deployments-by-workflow → run-deployment
+`,
 });
 
 server.addTool(listSharedWorkflows);
-server.addTool(listDeployments);
+// server.addTool(getWorkflow);
+// server.addTool(listDeployments);
+server.addTool(listDeploymentsByWorkflow);
 server.addTool(runDeployment);
-server.addTool(runWorkflow);
+// server.addTool(uploadFile);
+// server.addTool(runWorkflow);
 
 const { transport, port } = parseArgs();
 

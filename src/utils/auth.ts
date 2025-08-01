@@ -1,4 +1,5 @@
 import { MCPError } from "../types";
+import "@dotenvx/dotenvx/config";
 
 let currentApiKey: string | null = null;
 
@@ -8,7 +9,7 @@ let currentApiKey: string | null = null;
  * @throws {MCPError} If no API key is configured
  */
 
-export function authenticate(apiKey: string): void {
+export function authenticate(): void {
 	if (!getCurrentApiKey()) {
 		throw new MCPError("INVALID_API_KEY", "Invalid API key");
 	}

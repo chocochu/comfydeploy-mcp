@@ -24,7 +24,8 @@ const runWorkflowBodySchema = z.object({
 
 export const runWorkflow = {
 	name: "run-workflow",
-	description: "Run a workflow",
+	description:
+		"Run a workflow directly (advanced usage). This tool requires detailed technical configuration including model_id, workflow_id, workflow_version_id, GPU type, and complex input parameters. Most users should use run-deployment instead, which provides a simpler interface for the same functionality. Only use this tool when you need fine-grained control over workflow execution or when specifically requested by advanced users.",
 	parameters: runWorkflowBodySchema,
 	execute: async (args: z.infer<typeof runWorkflowBodySchema>) => {
 		const {
