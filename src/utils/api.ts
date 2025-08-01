@@ -12,6 +12,7 @@ export async function apiRequest(
 		"Content-Type": "application/json",
 		Authorization: `Bearer ${apiKey}`,
 	};
+	console.error(apiKey);
 	let queryString: string = "";
 	if (params) {
 		if (typeof params === "string") {

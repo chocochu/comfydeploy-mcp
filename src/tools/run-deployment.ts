@@ -22,6 +22,7 @@ export const runDeployment = {
 			undefined,
 			body,
 		);
-		return response;
+		console.error(response);
+		return JSON.stringify(response);
 	},
 };

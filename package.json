@@ -1,20 +1,19 @@
 {
-  "dependencies": {
-    "@clerk/backend": "^2.6.2",
-    "@modelcontextprotocol/inspector": "^0.16.2",
-    "@modelcontextprotocol/sdk": "^1.17.1",
-    "fastmcp": "^3.13.0",
-    "zod": "^4.0.14"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.1.3",
-    "@types/bun": "^1.2.19"
-  },
-  "name": "mcp",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "peerDependencies": {
-    "typescript": "^5"
-  }
+	"dependencies": {
+		"@clerk/backend": "^2.6.2",
+		"@modelcontextprotocol/inspector": "^0.16.2",
+		"@modelcontextprotocol/sdk": "^1.17.1",
+		"fastmcp": "^3.13.0",
+		"zod": "^4.0.14"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.1.3",
+		"@types/bun": "^1.2.19",
+		"@types/node": "^24.1.0",
+		"typescript": "^5.9.2"
+	},
+	"name": "comfydeploy-mcp",
+	"module": "index.ts",
+	"type": "module",
+	"private": true
 }

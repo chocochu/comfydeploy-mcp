@@ -15,6 +15,7 @@ export const listSharedWorkflows = {
 	parameters: listSharedWorkflowsParamsSchema,
 	execute: async (args: z.infer<typeof listSharedWorkflowsParamsSchema>) => {
 		const response = await apiRequest("/shared-workflows", "GET", args);
+		console.error(response);
 		const parsedData = SharedWorkflowListResponseSchema.parse(response);
 		return JSON.stringify(parsedData);
 	},

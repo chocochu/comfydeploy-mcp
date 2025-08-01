@@ -20,8 +20,14 @@ export const listDeployments = {
 	name: "list-deployments",
 	description: "List deployments",
 	parameters: listDeploymentsParamsSchema,
+	annotations: {
+		title: "List Deployments",
+		readOnlyHint: true,
+		openWorldHint: true,
+	},
 	execute: async (args: z.infer<typeof listDeploymentsParamsSchema>) => {
 		const response = await apiRequest("/deployments", "GET", args);
+		console.error(response);
 		const parsedData = DeploymentsResponseSchema.parse(response);
 		return JSON.stringify(parsedData);
 	},

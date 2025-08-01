@@ -49,6 +49,7 @@ export const runWorkflow = {
 			undefined,
 			body,
 		);
-		return response;
+		console.error(response);
+		return JSON.stringify(response);
 	},
 };
