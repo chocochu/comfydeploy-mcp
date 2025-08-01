@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { apiRequest } from "../utils/api";
+import { apiRequest } from "../utils/api.js";
 
 const runWorkflowBodySchema = z.object({
 	model_id: z.string(),

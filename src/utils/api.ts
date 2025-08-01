@@ -1,4 +1,4 @@
-import { getCurrentApiKey } from "./auth";
+import { getCurrentApiKey } from "./auth.js";
 
 export async function apiRequest(
 	endpoint: string,

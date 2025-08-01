@@ -1,0 +1,37 @@
+# Source files
+src/
+tsconfig.json
+biome.json
+
+# Development files
+*.log
+.env*
+.DS_Store
+
+# Build artifacts
+node_modules/
+.bun/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test files
+*.test.*
+tests/
+coverage/
+
+# Git
+.git/
+.gitignore
+
+# Screenshots and images
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+CLAUDE.md
+.cursor/

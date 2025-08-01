@@ -1,9 +1,9 @@
 import { z } from "zod";
 import {
 	SharedWorkflowListResponseSchema,
-	SharedWorkflowSchema,
-} from "../schemas/shared-workflow";
-import { apiRequest } from "../utils/api";
+	// SharedWorkflowSchema,
+} from "../schemas/shared-workflow.js";
+import { apiRequest } from "../utils/api.js";
 
 const listSharedWorkflowsParamsSchema = z.object({
 	search: z.string().optional(),
@@ -12,9 +12,9 @@ const listSharedWorkflowsParamsSchema = z.object({
 	// user_id: z.string().optional(),
 });
 
-const getWorkflowParamsSchema = z.object({
-	workflow_id: z.uuid(),
-});
+// const getWorkflowParamsSchema = z.object({
+// 	workflow_id: z.uuid(),
+// });
 
 export const listSharedWorkflows = {
 	name: "list-shared-workflows",

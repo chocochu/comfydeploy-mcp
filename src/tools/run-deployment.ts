@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { apiRequest } from "../utils/api";
+import { apiRequest } from "../utils/api.js";
 
 const runDeploymentBodySchema = z.object({
 	deployment_id: z.uuid(),

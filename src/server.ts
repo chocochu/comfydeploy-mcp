@@ -4,11 +4,11 @@ import { FastMCP } from "fastmcp";
 import {
 	// listDeployments,
 	listDeploymentsByWorkflow,
-} from "./tools/get-deployments";
-import { listSharedWorkflows } from "./tools/get-workflows";
-import { runDeployment } from "./tools/run-deployment";
+} from "./tools/get-deployments.js";
+import { listSharedWorkflows } from "./tools/get-workflows.js";
+import { runDeployment } from "./tools/run-deployment.js";
 
-// import { uploadFile } from "./tools/upload-file";
+// import { uploadFile } from "./tools/upload-file.js";
 
 // Parse command line arguments
 function parseArgs(): {

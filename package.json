@@ -1,4 +1,37 @@
 {
+	"name": "@comfydeploy/comfydeploy-mcp",
+	"version": "1.0.0",
+	"description": "ComfyDeploy MCP Server - AI generation deployments via Model Context Protocol",
+	"author": "ComfyDeploy",
+	"license": "MIT",
+	"type": "module",
+	"main": "dist/server.js",
+	"module": "dist/server.js",
+	"types": "dist/server.d.ts",
+	"bin": {
+		"comfydeploy-mcp": "dist/server.js"
+	},
+	"files": [
+		"dist",
+		"README.md",
+		"CLAUDE.md"
+	],
+	"scripts": {
+		"build": "tsc",
+		"dev": "bun run src/server.ts",
+		"start": "node dist/server.js",
+		"lint": "biome check src",
+		"lint:fix": "biome check --write src",
+		"prepublishOnly": "bun run build"
+	},
+	"keywords": [
+		"mcp",
+		"model-context-protocol",
+		"comfydeploy",
+		"ai",
+		"image-generation",
+		"comfyui"
+	],
 	"dependencies": {
 		"@clerk/backend": "^2.6.2",
 		"@dotenvx/dotenvx": "^1.48.4",
@@ -13,9 +46,11 @@
 		"@types/node": "^24.1.0",
 		"typescript": "^5.9.2"
 	},
-	"name": "comfydeploy-mcp",
-	"description": "ComfyDeploy MCP Server",
-	"module": "index.ts",
-	"type": "module",
-	"private": true
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/comfydeploy/mcp.git"
+	}
 }

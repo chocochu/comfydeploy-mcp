@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { DeploymentsResponseSchema } from "../schemas/deployment";
-import { apiRequest } from "../utils/api";
+import { DeploymentsResponseSchema } from "../schemas/deployment.js";
+import { apiRequest } from "../utils/api.js";
 
 // const listDeploymentsParamsSchema = z.object({
 // 	environment: z.enum([
