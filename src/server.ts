@@ -16,7 +16,7 @@ function parseArgs(): {
 	port: number;
 } {
 	const args = process.argv.slice(2);
-	let transport: "stdio" | "httpStream" = "httpStream";
+	let transport: "stdio" | "httpStream" = "stdio";
 	let port: number = 8080;
 
 	for (let i = 0; i < args.length; i++) {
@@ -26,7 +26,7 @@ function parseArgs(): {
 			case "-t": {
 				const transportValue = args[i + 1];
 				if (transportValue === "http" || transportValue === "httpStream") {
-					transport = transportValue === "http" ? "httpStream" : "httpStream";
+					transport = transportValue === "http" ? "httpStream" : "stdio";
 				} else if (transportValue === "stdio") {
 					transport = "stdio";
 				}

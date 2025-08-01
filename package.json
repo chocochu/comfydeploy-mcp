@@ -1,8 +1,8 @@
 {
-	"name": "@comfydeploy/comfydeploy-mcp",
+	"name": "comfydeploy-mcp",
 	"version": "1.0.0",
 	"description": "ComfyDeploy MCP Server - AI generation deployments via Model Context Protocol",
-	"author": "ComfyDeploy",
+	"author": "chocochu",
 	"license": "MIT",
 	"type": "module",
 	"main": "dist/server.js",
@@ -51,6 +51,6 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/comfydeploy/mcp.git"
+		"url": "https://github.com/chocochu/comfydeploy-mcp.git"
 	}
 }
