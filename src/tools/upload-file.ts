@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { z } from "zod";
-import { apiRequest } from "../utils/api";
+import { apiRequest } from "../utils/api.js";
 
 const uploadFileParamsSchema = z.object({
 	file_path: z.string().describe("Local file path to upload"),
