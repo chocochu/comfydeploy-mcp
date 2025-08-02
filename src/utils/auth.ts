@@ -1,4 +1,6 @@
-import "@dotenvx/dotenvx/config";
+import { config } from "@dotenvx/dotenvx";
+
+config({ path: [".env.missing", ".env"], ignore: ["MISSING_ENV_FILE"] });
 
 const currentApiKey: string | null = null;
 /**
