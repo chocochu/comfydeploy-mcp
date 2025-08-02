@@ -17,7 +17,7 @@
 		"CLAUDE.md"
 	],
 	"scripts": {
-		"build": "bun build src/server.ts --outfile dist/server.js",
+		"build": "tsc",
 		"dev": "bun run src/server.ts",
 		"start": "node dist/server.js",
 		"lint": "biome check src",
