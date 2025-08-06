@@ -267,6 +267,10 @@ export const runsResponseSchema = z.object({
 	}),
 });
 
+export const runOutputResponseSchema = z.array(runOutputSchema, {
+	error: "Invalid runs data. Please provide a valid array of run items.",
+});
+
 // Exported types
 export type WorkflowInputs = z.infer<typeof workflowInputsSchema>;
 export type WorkflowApi = z.infer<typeof workflowApiSchema>;

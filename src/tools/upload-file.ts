@@ -5,19 +5,15 @@ import { apiRequest } from "../utils/api.js";
 
 const uploadFileParamsSchema = z.object({
 	file_path: z.string().describe("Local file path to upload"),
-	target_folder: z
-		.string()
-		.default("upload")
-		.describe("Target folder name on server (default: 'upload')"),
 });
 
 export const uploadFile = {
 	name: "upload-file",
 	description:
-		"Upload a local file to ComfyDeploy's asset system and get the URL for use in deployments. This tool handles both small files (<50MB) with direct upload and large files with presigned URLs. The returned URL can be used as input for deployments that require file inputs (e.g., images, videos, documents). Automatically creates the target folder if it doesn't exist.",
+		"Upload a local file to ComfyDeploy and get the URL for use in running deployments. The returned URL can be used as input for deployments that require file inputs (e.g., images, videos, documents).",
 	parameters: uploadFileParamsSchema,
 	execute: async (args: z.infer<typeof uploadFileParamsSchema>) => {
-		const { file_path, target_folder } = args;
+		const { file_path } = args;
 
 		// Check if file exists
 		if (!fs.existsSync(file_path)) {
@@ -49,46 +45,16 @@ export const uploadFile = {
 
 		const contentType = getContentType(file_path);
 
-		try {
-			// Step 1: Ensure upload folder exists
-			try {
-				await apiRequest("assets/folder", "POST", undefined, {
-					name: target_folder,
-					parent_path: "/",
-				});
-				console.error(`Created folder: ${target_folder}`);
-			} catch (error: any) {
-				// Check for "folder already exists" error
-				const errorMessage = error?.message || error?.toString() || "";
-				const errorDetail = error?.detail || "";
+		const formData = new FormData();
+		const blob = new Blob([fileBuffer], { type: contentType });
+		formData.append("file", blob, fileName);
 
-				const isFolderExistsError =
-					errorMessage.includes("Folder already exists") ||
-					errorDetail === "Folder already exists" ||
-					(errorMessage.includes("status: 400") &&
-						errorMessage.includes("Folder already exists"));
-
-				if (isFolderExistsError) {
-					console.error(
-						`Upload folder '${target_folder}' already exists - continuing`,
-					);
-				} else {
-					console.error("Failed to create upload folder:", error);
-					throw new Error("Failed to ensure upload folder exists");
-				}
-			}
-
-			// Small file: direct upload using enhanced apiRequest with FormData support
-			const formData = new FormData();
-			const blob = new Blob([fileBuffer], { type: contentType });
-			formData.append("file", blob, fileName);
-
-			const result = await apiRequest("file/upload", "POST", formData);
-			console.error("File uploaded successfully (direct)", result);
-			return JSON.stringify(result);
-		} catch (error) {
-			console.error("Upload failed:", error);
-			throw error;
-		}
+		const result = await apiRequest(
+			"/file/upload",
+			"POST",
+			undefined,
+			formData,
+		);
+		return JSON.stringify(result);
 	},
 };

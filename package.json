@@ -1,6 +1,6 @@
 {
 	"name": "comfydeploy-mcp",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "ComfyDeploy MCP Server - AI generation deployments via Model Context Protocol",
 	"author": "chocochu",
 	"license": "MIT",
